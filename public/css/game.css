@@ -1,0 +1,245 @@
+/**
+ * Escape Room Game - Estilos CSS
+ */
+
+/* Estilos gerais */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333;
+}
+
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #252525;
+    border-bottom: 1px solid #333;
+}
+
+.btn-primary {
+    background-color: #6200ea;
+    border-color: #6200ea;
+}
+
+.btn-primary:hover {
+    background-color: #7c4dff;
+    border-color: #7c4dff;
+}
+
+.btn-outline-light:hover {
+    color: #6200ea;
+    background-color: #e0e0e0;
+}
+
+/* Estilos específicos do jogo */
+.phase-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #bb86fc;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+    margin-bottom: 20px;
+}
+
+.health-bar-container {
+    height: 25px;
+    background-color: #333;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.health-bar {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+
+.character-stats {
+    padding: 10px;
+    background-color: #252525;
+    border-radius: 5px;
+}
+
+.badge-level {
+    background-color: #6200ea;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.progress {
+    height: 10px;
+    background-color: #333;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    background-color: #bb86fc;
+}
+
+/* Cards de desafios */
+.challenge-card {
+    transition: transform 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.challenge-card.completed {
+    border-color: #4caf50;
+}
+
+.challenge-card.completed .card-header {
+    background-color: rgba(76, 175, 80, 0.2);
+}
+
+/* Cards de NPCs */
+.npc-card {
+    transition: transform 0.2s;
+    cursor: pointer;
+    border-left: 4px solid #bb86fc;
+}
+
+.npc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards de armadilhas */
+.trap-card {
+    border-left: 4px solid #f44336;
+}
+
+/* Cards de itens */
+.item-card {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.item-card .card-img-top {
+    height: 120px;
+    object-fit: cover;
+    background-color: #333;
+}
+
+/* Inventário */
+.inventory-item {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.inventory-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.inventory-item .item-quantity {
+    background-color: #6200ea;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+/* Modais */
+.modal-content {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+}
+
+.modal-header {
+    border-bottom: 1px solid #333;
+}
+
+.modal-footer {
+    border-top: 1px solid #333;
+}
+
+/* Alertas */
+#alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 350px;
+}
+
+/* Status de progresso */
+.completed {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.in-progress {
+    color: #bb86fc;
+    font-weight: bold;
+}
+
+.not-started {
+    color: #aaa;
+}
+
+/* Animações */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    .phase-title {
+        font-size: 24px;
+    }
+}
+

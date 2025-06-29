@@ -44,15 +44,15 @@ class GameController extends Controller
      */
     public function showPhase($phaseId)
     {
-        $phase = Phase::with(['challenges', 'npcs'])->findOrFail($phaseId);
+        $phase = Phase::with(['challenges', 'npcs', 'traps'])->findOrFail($phaseId);
         $character = $this->getCurrentCharacter();
-        
+
         // Registrar ou atualizar o progresso do jogador nesta fase
         $progress = PlayerProgress::firstOrCreate(
             ['character_id' => $character->id, 'phase_id' => $phase->id],
             ['status' => 'in_progress']
         );
-        
+
         // Registrar ação no histórico
         ActionHistory::create([
             'character_id' => $character->id,
@@ -62,6 +62,13 @@ class GameController extends Controller
             'result' => 'Fase iniciada com sucesso',
         ]);
 
+        // Buscar itens do personagem nessa fase via inventory
+        $items = Inventory::with('item')
+            ->where('character_id', $character->id)
+            ->get()
+            ->pluck('item');
+
+        // Verificar se todos os desafios foram concluídos
         $allChallengesCompleted = $phase->challenges->every(function ($challenge) use ($character) {
             return PlayerProgress::where('character_id', $character->id)
                                 ->where('challenge_id', $challenge->id)
@@ -69,9 +76,21 @@ class GameController extends Controller
                                 ->exists();
         });
 
+        // Variáveis que você precisa enviar para a view
+        $npcs = $phase->npcs;
+        $traps = $phase->traps;
 
-        return view('game.phase', compact('phase', 'character', 'progress' , 'allChallengesCompleted'));
+        return view('game.phase', compact(
+            'phase',
+            'character',
+            'progress',
+            'allChallengesCompleted',
+            'npcs',
+            'traps',
+            'items'
+        ));
     }
+
 
     /**
      * Processa a tentativa de resolver um desafio.

@@ -57,14 +57,14 @@
                 </div>
             </div>
             
-           @if(isset($npcs) && $npcs->count())
+           @if(isset($phase->npcs) && $phase->npcs->count())
                 <div class="card mt-4">
                     <div class="card-header">
                         <h5 class="mb-0">NPCs</h5>
                     </div>
                     <div class="card-body">
                         <div class="list-group">
-                            @foreach($npcs as $npc)
+                            @foreach($phase->npcs as $npc)
                                 <button class="list-group-item list-group-item-action bg-dark text-light border-secondary mb-2 npc-card"
                                         data-bs-toggle="modal"
                                         data-bs-target="#npc-modal"
@@ -86,9 +86,9 @@
                         <h5 class="mb-0">Desafios</h5>
                     </div>
                     <div class="card-body">
-                        @if(isset($challenges) && $challenges->count())
+                        @if(isset($phase->challenges) && $phase->challenges->count())
                             <div class="row">
-                                @foreach($challenges as $challenge)
+                                @foreach($phase->challenges as $challenge)
                                     @php
                                         $isCompleted = $progress->where('challenge_id', $challenge->id)->where('status', 'completed')->count() > 0;
                                     @endphp
@@ -119,14 +119,14 @@
                     </div>
                 </div>
                 
-              @if(isset($items) && $items->count())
+              @if(isset($phase->items) && $phase->items->count())
                     <div class="card mt-4">
                         <div class="card-header">
                             <h5 class="mb-0">Itens Disponíveis</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                @foreach($items as $item)
+                                @foreach($phase->items as $item)
                                     <div class="col-md-4 mb-3">
                                         <div class="card item-card" data-item-id="{{ $item->id }}">
                                             <div class="card-body">
@@ -144,7 +144,7 @@
                     </div>
                 @endif
                 
-               @if(isset($traps) && $traps->count())
+               @if(isset($phase->traps) && $phase->traps->count())
                     <div class="card mt-4">
                         <div class="card-header bg-danger">
                             <h5 class="mb-0">Armadilhas</h5>
@@ -156,7 +156,7 @@
                             </div>
                             
                             <div class="row">
-                                @foreach($traps as $trap)
+                                @foreach($phase->traps as $trap)
                                     <div class="col-md-6 mb-3">
                                         <div class="card trap-card">
                                             <div class="card-body">
